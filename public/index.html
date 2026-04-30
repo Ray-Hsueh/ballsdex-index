@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ballsdex Package Index</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="#">Ballsdex Package Index</a>
+    <span class="tagline">Community cogs &amp; extensions</span>
+    <span class="spacer"></span>
+  </header>
+
+  <main>
+
+    <!-- ── Approved ───────────────────────────────────────────────── -->
+    <div class="section-header">
+      <h2>Approved Packages</h2>
+      <span class="badge badge-approved"><span id="approved-count">…</span> packages</span>
+    </div>
+
+    <div id="approved-grid" class="grid">
+      <p class="state-msg">Loading…</p>
+    </div>
+
+    <!-- ── Unapproved ─────────────────────────────────────────────── -->
+    <div class="section-header">
+      <h2>Unapproved Packages</h2>
+      <span class="badge badge-unapproved"><span id="unapproved-count">…</span> packages</span>
+    </div>
+
+    <p class="unapproved-notice">
+      ⚠ These packages have not been reviewed. Install at your own risk.
+    </p>
+
+    <div id="unapproved-grid" class="grid">
+      <p class="state-msg">Loading…</p>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

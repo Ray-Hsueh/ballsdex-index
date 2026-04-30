@@ -1,0 +1,11 @@
+{
+  "approved": [
+  ],
+  "unapproved": [
+    {
+      "id": "example-cog",
+      "repo": "https://github.com/Ballsdex-Team/external-package-example",
+      "branch": "main"
+    }
+  ]
+}

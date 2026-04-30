@@ -1,0 +1,40 @@
+name: Resolve Cog Metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/cogs.json"
+  schedule:
+    # Re-resolve every day at 02:00 UTC to pick up new releases
+    - cron: "0 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  resolve:
+    name: Clone repos & extract pyproject.toml metadata
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout ballsdex-index
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install tomli
+
+      - name: Run resolve script
+        run: python scripts/resolve_cogs.py
+
+      - name: Commit updated resolved.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update resolved cog metadata [skip ci]"
+          file_pattern: "data/resolved.json"
