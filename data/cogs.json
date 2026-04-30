@@ -1,11 +1,15 @@
 {
-  "approved": [
-  ],
-  "unapproved": [
-    {
-      "id": "example-cog",
-      "repo": "https://github.com/Ballsdex-Team/external-package-example",
-      "branch": "main"
-    }
-  ]
+    "approved": [],
+    "unapproved": [
+        {
+            "id": "example-cog",
+            "repo": "https://github.com/Ballsdex-Team/external-package-example",
+            "branch": "main"
+        },
+        {
+            "id": "bd-labelmaker",
+            "repo": "https://github.com/dormieriancitizen/bd-labelmaker",
+            "branch": "main"
+        }
+    ]
 }
