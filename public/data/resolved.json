@@ -16,5 +16,48 @@
     ],
     "urls": {},
     "dependencies": []
+  },
+  {
+    "id": "broadcast",
+    "status": "unapproved",
+    "repo": "https://github.com/Ray-Hsueh/BallsDex-Broadcast-Pack",
+    "branch": "main",
+    "name": "ballsdex-broadcast",
+    "version": "0.0.0",
+    "description": "Broadcast package for Ballsdex 3.0",
+    "license": "Apache-2.0",
+    "authors": [
+      {
+        "name": "Ray Hsueh",
+        "email": "ray.hsueh.founder@gmail.com"
+      }
+    ],
+    "urls": {
+      "Repository": "https://github.com/Ray-Hsueh/BallsDex-Broadcast-Pack",
+      "Documentation": "https://github.com/Ray-Hsueh/BallsDex-Broadcast-Pack#readme",
+      "Issues": "https://github.com/Ray-Hsueh/BallsDex-Broadcast-Pack/issues",
+      "Funding": "https://ko-fi.com/rayhsueh"
+    },
+    "dependencies": []
+  },
+  {
+    "id": "bd-labelmaker",
+    "status": "unapproved",
+    "repo": "https://github.com/dormieriancitizen/bd-labelmaker",
+    "branch": "main",
+    "name": "labelmaker_app",
+    "version": "1.0.0",
+    "description": "Monkeypatch BallSpawnView for fun and profit",
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "dormieriancitizen",
+        "email": "foo@bar.com"
+      }
+    ],
+    "urls": {
+      "homepage": "https://github.com/dormieriancitizen/bd-labelmaker"
+    },
+    "dependencies": []
   }
 ]
