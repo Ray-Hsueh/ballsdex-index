@@ -1,6 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import type { Cog } from './types';
 import { PackageCard } from './components/PackageCard';
+import { SubmitPage } from './components/SubmitPage';
+
+type Page = 'index' | 'submit';
 
 // ── Icon ────────────────────────────────────────────────────────────────────
 
@@ -83,6 +86,7 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState<Page>('index');
 
   useEffect(() => {
     fetch('/data/resolved.json')
@@ -121,80 +125,112 @@ export default function App() {
       <header className="sticky top-0 z-50 border-b border-zinc-800 bg-[#111111]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3.5 sm:px-6">
           <div className="flex items-center gap-2">
-            <span className="text-base font-bold tracking-tight text-zinc-100">
+            <button
+              onClick={() => setPage('index')}
+              className="text-base font-bold tracking-tight text-zinc-100 hover:text-white"
+            >
               Ballsdex
-            </span>
+            </button>
             <span className="text-zinc-600">/</span>
             <span className="text-sm text-zinc-400">Package Index</span>
           </div>
 
-          <div className="ml-auto w-full max-w-xs">
-            <label className="relative flex items-center">
-              <span className="pointer-events-none absolute left-3 text-zinc-500">
-                <SearchIcon />
-              </span>
-              <input
-                type="search"
-                placeholder="Search packages…"
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                className="w-full rounded-lg border border-zinc-700 bg-[#1c1c1c] py-2 pl-9 pr-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
-              />
-            </label>
-          </div>
+          <nav className="flex items-center gap-1 text-sm">
+            <button
+              onClick={() => setPage('index')}
+              className={`rounded-md px-3 py-1.5 transition-colors ${
+                page === 'index'
+                  ? 'bg-zinc-800 text-zinc-100'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              Packages
+            </button>
+            <button
+              onClick={() => setPage('submit')}
+              className={`rounded-md px-3 py-1.5 transition-colors ${
+                page === 'submit'
+                  ? 'bg-zinc-800 text-zinc-100'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              Submit
+            </button>
+          </nav>
+
+          {page === 'index' && (
+            <div className="ml-auto w-full max-w-xs">
+              <label className="relative flex items-center">
+                <span className="pointer-events-none absolute left-3 text-zinc-500">
+                  <SearchIcon />
+                </span>
+                <input
+                  type="search"
+                  placeholder="Search packages…"
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  className="w-full rounded-lg border border-zinc-700 bg-[#1c1c1c] py-2 pl-9 pr-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                />
+              </label>
+            </div>
+          )}
         </div>
       </header>
 
       {/* ── Main ── */}
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        {loading && <Spinner />}
-        {error && <ErrorBanner message={error} />}
+      {page === 'submit' ? (
+        <SubmitPage />
+      ) : (
+        <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+          {loading && <Spinner />}
+          {error && <ErrorBanner message={error} />}
 
-        {!loading && !error && (
-          <div className="flex flex-col gap-12">
-            {/* Approved */}
-            <section>
-              <SectionHeader
-                label="Approved Packages"
-                count={approved.length}
-                variant="approved"
-              />
-              {approved.length > 0 ? (
-                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                  {approved.map(c => (
-                    <PackageCard key={c.id} cog={c} />
-                  ))}
-                </div>
-              ) : (
-                <EmptyState query={query} />
-              )}
-            </section>
+          {!loading && !error && (
+            <div className="flex flex-col gap-12">
+              {/* Approved */}
+              <section>
+                <SectionHeader
+                  label="Approved Packages"
+                  count={approved.length}
+                  variant="approved"
+                />
+                {approved.length > 0 ? (
+                  <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {approved.map(c => (
+                      <PackageCard key={c.id} cog={c} />
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState query={query} />
+                )}
+              </section>
 
-            {/* Unapproved */}
-            <section>
-              <SectionHeader
-                label="Unapproved Packages"
-                count={unapproved.length}
-                variant="unapproved"
-              />
-              {hasUnapproved && (
-				<p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-400/90">                  ⚠ These packages have not been reviewed. Install at your own
-                  risk.
-                </p>
-              )}
-              {unapproved.length > 0 ? (
-                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                  {unapproved.map(c => (
-                    <PackageCard key={c.id} cog={c} />
-                  ))}
-                </div>
-              ) : (
-                <EmptyState query={query} />
-              )}
-            </section>
-          </div>
-        )}
-      </main>
+              {/* Unapproved */}
+              <section>
+                <SectionHeader
+                  label="Unapproved Packages"
+                  count={unapproved.length}
+                  variant="unapproved"
+                />
+                {hasUnapproved && (
+                  <p className="mt-4 rounded-lg border border-zinc-700 bg-zinc-800/50 px-4 py-3 text-sm text-zinc-400">
+                    ⚠ These packages have not been reviewed. Install at your own risk.
+                  </p>
+                )}
+                {unapproved.length > 0 ? (
+                  <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {unapproved.map(c => (
+                      <PackageCard key={c.id} cog={c} />
+                    ))}
+                  </div>
+                ) : (
+                  <EmptyState query={query} />
+                )}
+              </section>
+            </div>
+          )}
+        </main>
+      )}
     </div>
   );
 }
