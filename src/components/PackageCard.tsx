@@ -37,15 +37,16 @@ export function PackageCard({ cog }: { cog: Cog }) {
   }
 
   return (
-    <article className="flex flex-col gap-3 rounded-xl border border-zinc-800 bg-[#1a1a1a] p-5 shadow-md transition-all duration-200 hover:border-zinc-600 hover:bg-[#202020]">
+    <article className="group relative flex flex-col gap-3 overflow-hidden rounded-xl border border-zinc-800 bg-[#1a1a1a] p-5 shadow-md transition-all duration-200 hover:border-zinc-600 hover:bg-[#1f1f1f] hover:shadow-xl">
+      <span className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-zinc-500 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="truncate font-semibold text-zinc-100">
+          <h3 className="truncate font-semibold text-white">
             {cog.name ?? cog.id}
           </h3>
           {cog.version && (
-            <span className="mt-0.5 inline-block font-mono text-xs text-zinc-500">
+            <span className="mt-0.5 inline-block rounded-full border border-emerald-800/60 bg-emerald-950/60 px-2 font-mono text-xs text-emerald-400">
               v{cog.version}
             </span>
           )}
@@ -56,7 +57,7 @@ export function PackageCard({ cog }: { cog: Cog }) {
             target="_blank"
             rel="noopener noreferrer"
             title="View repository"
-            className="mt-0.5 shrink-0 text-zinc-600 transition-colors hover:text-zinc-300"
+            className="mt-0.5 shrink-0 text-zinc-500 transition-colors hover:text-white group-hover:text-zinc-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
