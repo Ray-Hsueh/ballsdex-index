@@ -11,6 +11,11 @@
       "id": "broadcast",
       "repo": "https://github.com/Ray-Hsueh/BallsDex-Broadcast-Pack",
       "branch": "main"
+    },
+    {
+      "id": "bd-labelmaker",
+      "repo": "https://github.com/dormieriancitizen/bd-labelmaker",
+      "branch": "main"
     }
   ]
 }
