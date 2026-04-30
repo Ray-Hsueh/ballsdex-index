@@ -42,7 +42,7 @@ function SectionHeader({
 
   return (
     <div className="flex items-center gap-3">
-      <h2 className="text-base font-semibold text-slate-200">{label}</h2>
+      <h2 className="text-base font-semibold text-zinc-100">{label}</h2>
       <span
         className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${badge}`}
       >
@@ -54,7 +54,7 @@ function SectionHeader({
 
 function EmptyState({ query }: { query: string }) {
   return (
-    <p className="py-6 text-sm text-slate-500">
+    <p className="py-6 text-sm text-zinc-500">
       {query.trim() ? `No packages match "${query}".` : 'No packages yet.'}
     </p>
   );
@@ -63,7 +63,7 @@ function EmptyState({ query }: { query: string }) {
 function Spinner() {
   return (
     <div className="flex items-center justify-center py-28">
-      <div className="h-7 w-7 animate-spin rounded-full border-2 border-slate-700 border-t-blue-400" />
+      <div className="h-7 w-7 animate-spin rounded-full border-2 border-zinc-700 border-t-zinc-300" />
     </div>
   );
 }
@@ -116,21 +116,21 @@ export default function App() {
   const hasUnapproved = cogs.some(c => c.status === 'unapproved');
 
   return (
-    <div className="min-h-screen bg-[#090c14] font-sans text-slate-200">
+    <div className="min-h-screen bg-[#111111] font-sans text-zinc-100">
       {/* ── Header ── */}
-      <header className="sticky top-0 z-50 border-b border-slate-800 bg-[#090c14]/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-zinc-800 bg-[#111111]/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3.5 sm:px-6">
           <div className="flex items-center gap-2">
-            <span className="text-base font-bold tracking-tight text-blue-400">
+            <span className="text-base font-bold tracking-tight text-zinc-100">
               Ballsdex
             </span>
-            <span className="text-slate-600">/</span>
-            <span className="text-sm text-slate-400">Package Index</span>
+            <span className="text-zinc-600">/</span>
+            <span className="text-sm text-zinc-400">Package Index</span>
           </div>
 
           <div className="ml-auto w-full max-w-xs">
             <label className="relative flex items-center">
-              <span className="pointer-events-none absolute left-3 text-slate-500">
+              <span className="pointer-events-none absolute left-3 text-zinc-500">
                 <SearchIcon />
               </span>
               <input
@@ -138,7 +138,7 @@ export default function App() {
                 placeholder="Search packages…"
                 value={query}
                 onChange={e => setQuery(e.target.value)}
-                className="w-full rounded-lg border border-slate-700/60 bg-slate-900 py-2 pl-9 pr-3 text-sm text-slate-200 placeholder:text-slate-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                className="w-full rounded-lg border border-zinc-700 bg-[#1c1c1c] py-2 pl-9 pr-3 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
               />
             </label>
           </div>
@@ -178,7 +178,7 @@ export default function App() {
                 variant="unapproved"
               />
               {hasUnapproved && (
-                <p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-400/90">
+                <p className="mt-4 rounded-lg border border-zinc-700 bg-zinc-800/50 px-4 py-3 text-sm text-zinc-400">
                   ⚠ These packages have not been reviewed. Install at your own
                   risk.
                 </p>

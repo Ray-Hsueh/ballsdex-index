@@ -37,15 +37,15 @@ export function PackageCard({ cog }: { cog: Cog }) {
   }
 
   return (
-    <article className="flex flex-col gap-3 rounded-xl border border-slate-700/50 bg-slate-900 p-5 shadow-md transition-all duration-200 hover:border-slate-600 hover:bg-slate-800/70">
+    <article className="flex flex-col gap-3 rounded-xl border border-zinc-800 bg-[#1a1a1a] p-5 shadow-md transition-all duration-200 hover:border-zinc-600 hover:bg-[#202020]">
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="truncate font-semibold text-slate-100">
+          <h3 className="truncate font-semibold text-zinc-100">
             {cog.name ?? cog.id}
           </h3>
           {cog.version && (
-            <span className="mt-0.5 inline-block font-mono text-xs text-slate-500">
+            <span className="mt-0.5 inline-block font-mono text-xs text-zinc-500">
               v{cog.version}
             </span>
           )}
@@ -56,7 +56,7 @@ export function PackageCard({ cog }: { cog: Cog }) {
             target="_blank"
             rel="noopener noreferrer"
             title="View repository"
-            className="mt-0.5 shrink-0 text-slate-500 transition-colors hover:text-blue-400"
+            className="mt-0.5 shrink-0 text-zinc-600 transition-colors hover:text-zinc-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -79,15 +79,15 @@ export function PackageCard({ cog }: { cog: Cog }) {
       </div>
 
       {/* Description */}
-      <p className="flex-1 text-sm leading-relaxed text-slate-400">
+      <p className="flex-1 text-sm leading-relaxed text-zinc-400">
         {cog.description ?? 'No description provided.'}
       </p>
 
       {/* Meta */}
-      <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+      <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
         {authors.length > 0 && <span>{authors.join(', ')}</span>}
         {license && (
-          <span className="rounded-full border border-slate-700 bg-slate-800 px-2.5 py-0.5 text-slate-400">
+          <span className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-0.5 text-zinc-400">
             {license}
           </span>
         )}
@@ -97,7 +97,7 @@ export function PackageCard({ cog }: { cog: Cog }) {
       <div>
         <button
           onClick={() => setOpen(o => !o)}
-          className="flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-slate-200"
+          className="flex items-center gap-1.5 text-xs font-medium text-zinc-500 transition-colors hover:text-zinc-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -119,12 +119,12 @@ export function PackageCard({ cog }: { cog: Cog }) {
 
         {open && (
           <div className="relative mt-2">
-            <pre className="overflow-x-auto rounded-lg border border-slate-700/60 bg-[#090c14] px-4 py-3 font-mono text-xs leading-relaxed text-slate-300">
+            <pre className="overflow-x-auto rounded-lg border border-zinc-800 bg-[#0d0d0d] px-4 py-3 font-mono text-xs leading-relaxed text-zinc-300">
               {snippet}
             </pre>
             <button
               onClick={handleCopy}
-              className="absolute right-2 top-2 rounded border border-slate-600 bg-slate-800 px-2 py-1 text-xs text-slate-300 transition-colors hover:bg-slate-700 hover:text-slate-100"
+              className="absolute right-2 top-2 rounded border border-zinc-700 bg-zinc-800 px-2 py-1 text-xs text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-zinc-100"
             >
               {copied ? 'Copied!' : 'Copy'}
             </button>
