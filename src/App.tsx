@@ -178,8 +178,7 @@ export default function App() {
                 variant="unapproved"
               />
               {hasUnapproved && (
-                <p className="mt-4 rounded-lg border border-zinc-700 bg-zinc-800/50 px-4 py-3 text-sm text-zinc-400">
-                  ⚠ These packages have not been reviewed. Install at your own
+				<p className="mt-4 rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3 text-sm text-amber-400/90">                  ⚠ These packages have not been reviewed. Install at your own
                   risk.
                 </p>
               )}
